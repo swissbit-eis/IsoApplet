@@ -37,6 +37,7 @@ import javacard.security.ECPrivateKey;
 import javacardx.crypto.Cipher;
 import javacardx.apdu.ExtendedLength;
 import javacard.security.CryptoException;
+import javacard.security.MessageDigest;
 import javacard.security.Signature;
 import javacard.security.RandomData;
 
@@ -184,7 +185,7 @@ public class IsoApplet extends Applet implements ExtendedLength {
         rsaPkcs1Cipher = Cipher.getInstance(Cipher.ALG_RSA_PKCS1, false);
 
         try {
-            ecdsaSignature = Signature.getInstance((byte)0x91, false);
+            ecdsaSignature = Signature.getInstance(MessageDigest.ALG_NULL, Signature.SIG_CIPHER_ECDSA, Cipher.PAD_NULL, false);
             api_features |= API_FEATURE_ECC;
         } catch (CryptoException e) {
             if(e.getReason() == CryptoException.NO_SUCH_ALGORITHM) {
