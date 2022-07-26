@@ -184,7 +184,7 @@ public class IsoApplet extends Applet implements ExtendedLength {
         rsaPkcs1Cipher = Cipher.getInstance(Cipher.ALG_RSA_PKCS1, false);
 
         try {
-            ecdsaSignature = Signature.getInstance(Signature.ALG_ECDSA_SHA, false);
+            ecdsaSignature = Signature.getInstance((byte)0x91, false);
             api_features |= API_FEATURE_ECC;
         } catch (CryptoException e) {
             if(e.getReason() == CryptoException.NO_SUCH_ALGORITHM) {
